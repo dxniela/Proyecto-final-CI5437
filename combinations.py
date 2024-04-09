@@ -50,3 +50,31 @@ def generate_possibilities(row_groups, column_groups, n, m):
             num_pos += 1
 
     return CNF_variables, possibilities_variables
+
+# Función para generar las restricciones de las posibilidades.
+def generate_restrictions(CNF_variables, n_rows, n_cols):
+    restrictions = []
+
+    # Restricción de que solo debe ser cierta a lo sumo una posibilidad para cada fila o columna
+    for i in range(n_rows):
+        possibilities = [CNF_variables[(0, i, num_pos)] for num_pos in range(n_cols)]
+        for a, b in combinations(possibilities, 2):
+            restrictions.append([-a, -b])
+
+    for i in range(n_cols):
+        possibilities = [CNF_variables[(1, i, num_pos)] for num_pos in range(n_rows)]
+        for a, b in combinations(possibilities, 2):
+            restrictions.append([-a, -b])
+
+    # Restricción de que por lo menos se cumple 1 posibilidad para cada fila o columna
+    for i in range(n_rows):
+        possibilities = [CNF_variables[(0, i, num_pos)] for num_pos in range(n_cols)]
+        restrictions.append(possibilities)
+
+    for i in range(n_cols):
+        possibilities = [CNF_variables[(1, i, num_pos)] for num_pos in range(n_rows)]
+        restrictions.append(possibilities)
+
+    return restrictions
+
+

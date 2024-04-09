@@ -1,3 +1,4 @@
+import sys
 from translators import translator_input
 from combinations import generate_possibilities
 
