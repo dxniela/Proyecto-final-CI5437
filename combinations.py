@@ -18,10 +18,16 @@ def generate_possibilities_aux(groups, n):
     # Para cada combinación, inserta los bloques en las posiciones correspondientes.
     possibilities = []
     for combination in combinations_list:
-        possibility = ['F'] * n_blocks
+        aux = 0
+        possibility = ['F'] * n
         for i, block in zip(combination, blocks):
-            possibility[i:i] = block
-        possibilities.append(possibility[:-1])
+            possibility[i+aux:i+aux+len(block)] = block
+            aux = aux + (len(block)-1)                        
+        if len(possibility) > n and possibility[-1] == 'F':
+            possibility = possibility[:-1]
+            
+        possibilities.append(possibility)
+        #print("arreglo possibilities",possibilities)
 
     return possibilities
 
@@ -84,8 +90,10 @@ def generate_cell_restrictions(CNF_variables, possibilities_variables):
             if id_row_column == 0 and id_col_column == 1:
                 try:
                     # Intenta obtener las posibilidades para la fila i y la columna j
-                    possibility_row = possibilities_variables[(0, i, k_row)][j]
-                    possibility_col = possibilities_variables[(1, j, k_col)][i]
+                    if j < len(possibilities_variables[(0, i, k_row)]):
+                        possibility_row = possibilities_variables[(0, i, k_row)][j]
+                    if i < len(possibilities_variables[(1, j, k_col)]):
+                        possibility_col = possibilities_variables[(1, j, k_col)][i]
                     # Si las posibilidades son diferentes, entonces añade las restricciones
                     if possibility_row != possibility_col:
                         restrictions.append([-val_row, -val_col])
