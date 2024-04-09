@@ -3,7 +3,7 @@ def translator_input(filename):
 
     with open(filename, 'r') as file:
         first_line = next(file).strip()
-        n, m = map(int, first_line.split())  
+        m, n = map(int, first_line.split())  
 
         row_clues, column_clues = [[]]*n, [[]]*m
 
