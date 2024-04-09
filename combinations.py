@@ -111,5 +111,3 @@ def generate_restrictions(CNF_variables, possibilities_variables, n_rows, n_cols
     restrictions += generate_cell_restrictions(CNF_variables, possibilities_variables)
  
     return restrictions
-
-
