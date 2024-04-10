@@ -14,7 +14,7 @@ Para ejecutar este proyecto necesitas tener instalado Python 3 y las siguientes 
 Puedes instalar estas bibliotecas con pip:
 
 ```
-pip install translators combinations pysat tkinter
+pip install translators combinations pysat tk
 ```
 
 ## Clonar el Repositorio
