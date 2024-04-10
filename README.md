@@ -6,15 +6,14 @@ Este proyecto es un solucionador de nonogramas que utiliza una interfaz gráfica
 
 Para ejecutar este proyecto necesitas tener instalado Python 3 y las siguientes bibliotecas:
 
-- translators
-- combinations
 - pysat
 - tkinter
 
 Puedes instalar estas bibliotecas con pip:
 
 ```
-pip install translators combinations pysat tk
+pip install python-sat
+pip install tk
 ```
 
 ## Clonar el Repositorio
