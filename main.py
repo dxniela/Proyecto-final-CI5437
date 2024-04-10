@@ -10,7 +10,8 @@ def solve_nonogram(filename):
     s = Solver(name='g421')
     (CNF_variables, possibilities_variables, n_variables) = generate_possibilities(row_clues, column_clues, n, m)
     s.append_formula(generate_restrictions(CNF_variables, possibilities_variables, n, m))
-    
+    print(n_variables)
+    print(len(generate_restrictions(CNF_variables, possibilities_variables, n, m)))
     print("Resolviendo")
 
     if not s.solve():
